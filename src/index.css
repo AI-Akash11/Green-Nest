@@ -2,3 +2,7 @@
  @plugin "daisyui" {
    themes: light --default, dark;
  }
+
+ a.active{
+  @apply text-green-500 underline underline-offset-4 font-bold
+ }
