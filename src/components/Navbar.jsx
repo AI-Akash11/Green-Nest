@@ -39,7 +39,7 @@ const Navbar = () => {
         </div>
         <div className="flex justify-start items-center">
           <img className="w-8" src="https://i.ibb.co.com/dyt4mZT/plant-logo.png" alt="" />
-          <Link to={'/'} className="btn btn-ghost text-2xl text-yellow-400"><span className="text-green-500">Green</span>Nest</Link>
+          <Link to={'/'} className="text-2xl ml-2 font-bold text-yellow-400"><span className="text-green-500">Green</span>Nest</Link>
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">

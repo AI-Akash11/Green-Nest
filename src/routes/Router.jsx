@@ -6,11 +6,15 @@ import MyProfile from "../pages/MyProfile";
 import AuthLayout from "../layouts/AuthLayout";
 import Login from "../pages/login";
 import Signup from "../pages/signup";
+import Error from "../components/Error";
+import Loader from "../components/Loader";
 
 export const router = createBrowserRouter([
     {
         path:'/',
         element:<HomeLayout></HomeLayout>,
+        errorElement:<Error></Error>,
+        hydrateFallbackElement: <Loader></Loader>,
         children:[
             {
                 index: true,
