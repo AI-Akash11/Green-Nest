@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "category": "Watering",
+    "tip": "Water your plants when the top inch of soil feels dry. Avoid overwatering."
+  },
+  {
+    "id": 2,
+    "category": "Sunlight",
+    "tip": "Place low-light plants away from direct sun, and bright plants near windows."
+  },
+  {
+    "id": 3,
+    "category": "Fertilizing",
+    "tip": "Feed plants with a balanced liquid fertilizer once a month during growing season."
+  },
+  {
+    "id": 4,
+    "category": "Pruning",
+    "tip": "Trim yellow or dead leaves regularly to promote healthy new growth."
+  },
+  {
+    "id": 5,
+    "category": "Humidity",
+    "tip": "Increase humidity with a mist spray or by placing a tray of water near your plants."
+  },
+  {
+    "id": 6,
+    "category": "Repotting",
+    "tip": "Repot plants once a year to refresh soil and give roots more space to grow."
+  }
+]

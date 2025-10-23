@@ -12,12 +12,12 @@ const Plants = () => {
         Bring nature home with our carefully curated indoor greens.
       </h4>
       <p className="font-semibold text-2xl text-green-600 ml-2 mb-4 md:mb-8">
-        Total Plants Availavle{" "}
-        <span className="border-2 rounded-full px-2 py-1 border-green-500 bg-green-400 text-white">
+        Total Plants Availavle {" "}
+        <span className="border-2 rounded-full px-2 py-[7px] border-green-500 bg-green-400 text-white">
           {plants.length}
         </span>
       </p>
-      <div className="grid grid-cols-3 lg:grid-cols-4 gap-5 p-5 bg-base-200">
+      <div className="grid grid-cols-3 lg:grid-cols-4 gap-5 p-5 bg-base-200 mb-10">
         {plants.map((plant) => (
         <PlantCard plant={plant} key={plant.plantId}></PlantCard>
       ))}

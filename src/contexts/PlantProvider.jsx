@@ -4,6 +4,7 @@ import { AuthContext } from "./AuthContext";
 
 const PlantProvider = ({ children }) => {
     const [plants, setPlants] = useState([]);
+    const [tips, setTips] = useState([]);
     const {setLoading} = use(AuthContext)
 
     useEffect(()=>{
@@ -19,8 +20,22 @@ const PlantProvider = ({ children }) => {
         })
     },[]);
 
+    useEffect(()=>{
+        fetch('/tipsData.json')
+        .then((res)=> res.json())
+        .then((data)=> {
+            setTips(data);
+            setLoading(false);
+        })
+        .catch(error =>{
+            console.log(error);
+            setLoading(false);
+        })
+    },[]);
+
     const plantInfo = {
-        plants
+        plants,
+        tips
     }
 
   return <PlantContext value={plantInfo}>{children}</PlantContext>
