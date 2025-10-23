@@ -1,9 +1,32 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router";
+import { AuthContext } from "../contexts/AuthContext";
+import { toast } from "react-toastify";
 
 const Login = () => {
+  const {
+    googleLogin,
+    setUser,
+    setLoading,
+
+  } = useContext(AuthContext);
   const [eye, setEye] = useState(true);
+
+  const handleGoogleLogIn =()=>{
+    console.log("clicked");
+    googleLogin()
+    .then((res) => {
+        console.log(res);
+        setLoading(false);
+        setUser(res.user);
+        toast.success("Google Login successful");
+      })
+      .catch((e) => {
+        console.log(e);
+        toast.error(e.message);
+      });
+  };
   return (
     <div className="py-40 flex justify-center items-center bg-base-100">
       <div className="bg-base-200 p-8 rounded-2xl shadow-[9px_9px_16px_#a3b1c6,-9px_-9px_16px_#ffffff] w-[400px] md:w-[500px]">
@@ -65,7 +88,7 @@ const Login = () => {
           <hr className="flex-grow border-t border-gray-400" />
         </div>
 
-        <button className="btn bg-white text-black border-[#e5e5e5] w-full py-6 text-lg rounded-xl">
+        <button onClick={()=>handleGoogleLogIn()} className="btn bg-white text-black border-[#e5e5e5] w-full py-6 text-lg rounded-xl">
           <svg
             aria-label="Google logo"
             width="24"
