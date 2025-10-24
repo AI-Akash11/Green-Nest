@@ -9,6 +9,7 @@ import Signup from "../pages/signup";
 import Error from "../components/Error";
 import Loader from "../components/Loader";
 import PrivateRoute from "./PrivateRoute";
+import PlantDetails from "../pages/PlantDetails";
 
 export const router = createBrowserRouter([
     {
@@ -47,5 +48,11 @@ export const router = createBrowserRouter([
                 element: <Signup></Signup>,
             }
         ]
+    },
+    {
+        path:'/plantDetails/:id',
+        element: <PrivateRoute>
+            <PlantDetails></PlantDetails>
+        </PrivateRoute>
     }
 ]);

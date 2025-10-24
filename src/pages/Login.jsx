@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 
@@ -14,6 +14,8 @@ const Login = () => {
   } = useContext(AuthContext);
   const [eye, setEye] = useState(true);
   const navigate = useNavigate();
+  const location = useLocation();
+  // console.log(location)
 
 
   const handleEmailLogin = (e) => {
@@ -26,7 +28,7 @@ const Login = () => {
       // console.log(res);
         setLoading(false);
         setUser(res.user);
-        navigate('/')
+        navigate(`${location.state ? location.state : "/"}`)
         toast.success("Login successful");
     })
     .catch(e=>{
@@ -43,7 +45,7 @@ const Login = () => {
         // console.log(res);
         setLoading(false);
         setUser(res.user);
-        navigate('/')
+        navigate(`${location.state ? location.state : "/"}`)
         toast.success("Google Login successful");
       })
       .catch((e) => {
