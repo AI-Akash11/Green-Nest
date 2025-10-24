@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 
@@ -9,23 +9,41 @@ const Login = () => {
     googleLogin,
     setUser,
     setLoading,
+    logInUser,
 
   } = useContext(AuthContext);
   const [eye, setEye] = useState(true);
+  const navigate = useNavigate();
 
 
   const handleEmailLogin = (e) => {
     e.preventDefault();
-    console.log('email Login clicked')
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    logInUser(email,password)
+    .then((res)=>{
+      // console.log(res);
+        setLoading(false);
+        setUser(res.user);
+        navigate('/')
+        toast.success("Login successful");
+    })
+    .catch(e=>{
+      console.log(e);
+      toast.error(e.message);
+    })
+    
   }
 
   const handleGoogleLogIn =()=>{
-    console.log("clicked");
+    // console.log("clicked");
     googleLogin()
     .then((res) => {
-        console.log(res);
+        // console.log(res);
         setLoading(false);
         setUser(res.user);
+        navigate('/')
         toast.success("Google Login successful");
       })
       .catch((e) => {
@@ -34,7 +52,7 @@ const Login = () => {
       });
   };
   return (
-    <div className="py-40 flex justify-center items-center bg-base-100">
+    <div className="py-10 md:py-20 lg:py-40 flex justify-center items-center bg-base-100">
       <div className="bg-base-200 p-8 rounded-2xl shadow-[9px_9px_16px_#a3b1c6,-9px_-9px_16px_#ffffff] w-[400px] md:w-[500px]">
         <h2 className="text-center text-green-400 text-4xl font-bold mb-10">
           Login

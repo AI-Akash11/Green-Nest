@@ -6,7 +6,7 @@ const TopRatedPlant = () => {
   const { plants } = use(PlantContext);
 
   const topRatedPlants = plants.filter((plant) => plant.topRated == "true");
-  console.log(topRatedPlants);
+  // console.log(topRatedPlants);
   return (
     <div className="w-11/12 md:w-5/6 lg:max-w-[1400px] mx-auto my-30">
       <h2 className="font-semibold text-5xl text-center mb-10 text-yellow-600">Our Top Rated Plants</h2>

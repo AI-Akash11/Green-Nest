@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../contexts/AuthContext";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
     const links = <>
@@ -7,6 +9,18 @@ const Navbar = () => {
     <NavLink className={'px-2 py-1 text-sm rounded-2xl font-semibold text-gray-600'} to={'/plants'}>Plants</NavLink>
     <NavLink className={'px-2 py-1 text-sm rounded-2xl font-semibold text-gray-600'} to={'/myprofile'}>My Profile</NavLink>
     </>
+    const {user,logOut,setUser} = useContext(AuthContext)
+    // console.log(user)
+    const handleLogOut = () =>{
+      logOut()
+      .then(()=>{
+        setUser(null)
+        toast.success("user Logged Out successfully")
+      })
+      .catch(e=>{
+        console.log(e)
+      })
+    }
   return (
     <div className="navbar bg-base-100 shadow-sm md:px-10 lg:px-20">
       <div className="navbar-start">
@@ -50,7 +64,40 @@ const Navbar = () => {
         </div>
       </div>
       <div className="navbar-end">
+        {
+        user 
+        ? 
+        <details className="dropdown dropdown-end">
+      <summary className="btn m-1 p-0 border-none bg-transparent">
+        <img
+          src={user.photoURL}
+          className="w-10 h-10 rounded-full border border-gray-300"
+        />
+      </summary>
+
+      <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-64 p-4 shadow-lg">
+        <li className="flex flex-col gap-1">
+          <p className="font-semibold text-gray-700">{user.displayName}</p>
+          <p className="text-sm text-gray-500">{user.email}</p>
+        </li>
+
+        <div className="divider my-1"></div>
+
+        <li>
+          <button
+            onClick={handleLogOut}
+            className="btn bg-yellow-400 text-white mt-1"
+          >
+            Logout
+          </button>
+        </li>
+      </ul>
+    </details> 
+        :
+        <div className="navbar-end">
         <Link to={'/auth/login'} className="btn btn-success text-white">Login</Link>
+      </div>
+      }
       </div>
     </div>
   );
