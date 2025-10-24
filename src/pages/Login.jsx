@@ -13,6 +13,12 @@ const Login = () => {
   } = useContext(AuthContext);
   const [eye, setEye] = useState(true);
 
+
+  const handleEmailLogin = (e) => {
+    e.preventDefault();
+    console.log('email Login clicked')
+  }
+
   const handleGoogleLogIn =()=>{
     console.log("clicked");
     googleLogin()
@@ -34,7 +40,9 @@ const Login = () => {
           Login
         </h2>
 
-        <form className="flex flex-col gap-1 relative">
+        <form
+        onSubmit={handleEmailLogin} 
+        className="flex flex-col gap-1 relative">
           <label className="text-sm  mt-3 ml-1">Email</label>
           <input
             type="email"
@@ -88,7 +96,7 @@ const Login = () => {
           <hr className="flex-grow border-t border-gray-400" />
         </div>
 
-        <button onClick={()=>handleGoogleLogIn()} className="btn bg-white text-black border-[#e5e5e5] w-full py-6 text-lg rounded-xl">
+        <button onClick={handleGoogleLogIn} className="btn bg-white text-black border-[#e5e5e5] w-full py-6 text-lg rounded-xl">
           <svg
             aria-label="Google logo"
             width="24"

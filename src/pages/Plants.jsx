@@ -17,7 +17,7 @@ const Plants = () => {
           {plants.length}
         </span>
       </p>
-      <div className="grid grid-cols-3 lg:grid-cols-4 gap-5 p-5 bg-base-200 mb-10">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 p-5 bg-base-200 mb-10">
         {plants.map((plant) => (
         <PlantCard plant={plant} key={plant.plantId}></PlantCard>
       ))}
