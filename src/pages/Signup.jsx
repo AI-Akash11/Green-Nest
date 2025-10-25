@@ -66,7 +66,7 @@ const Signup = () => {
         updateUser({ displayName: name, photoURL: photo })
           .then(() => {
             setUser({ ...user, displayName: name, photoURL: photo });
-            navigate("/auth/login");
+            navigate("/");
             toast.success("Account created Successfully");
           })
           .catch((error) => {

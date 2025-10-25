@@ -1,16 +1,43 @@
-# React + Vite
+## 🌱 Project Theme
+GreenNest is an elegant single-page web application built for plant lovers who want to nurture and decorate their homes with healthy indoor plants. The platform allows users to explore plant care guides, buy plants, and book expert consultations — ensuring a greener and healthier living space during any season.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🪴 Browse and explore a wide variety of indoor plants
 
-## React Compiler
+📚 Access plant care guides for different plant types
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+🛒 Buy plants directly from the platform
 
-## Expanding the ESLint configuration
+👩‍🌾 Book expert consultations for plant care tips
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🔐 Firebase Authentication (Email & Google Login)
+
+⚡ Smooth and modern UI with Tailwind & DaisyUI
+
+📱 Fully responsive for mobile and desktop
+
+
+## 🧰 Technologies Used
+
+
+| Technology         | Purpose                                          |
+| ------------------ | ------------------------------------------------ |
+| **React.js**       | Frontend library for building the user interface |
+| **Firebase**       | Authentication & backend services                |
+| **React Router**   | SPA navigation and routing                       |
+| **DaisyUI**        | Tailwind CSS UI component library                |
+| **Swiper.js**      | Smooth, modern sliders and carousels             |
+| **Tailwind CSS**   | Utility-first CSS framework for styling          |
+| **React Icons**    | Beautiful, scalable icons                        |
+| **React Toastify** | Elegant toast notifications for user feedback    |
+
+
+## 🌿 Live Demo
+👉 https://green-nest-fd8a8.web.app/
+
+## 💚 Author
+
+Developed with React by [Ali Imam Akash]
+Feel free to connect or contribute!
