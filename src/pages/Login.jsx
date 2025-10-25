@@ -26,7 +26,7 @@ const Login = () => {
     logInUser(email,password)
     .then((res)=>{
       // console.log(res);
-        setLoading(false);
+        // setLoading(false);
         setUser(res.user);
         navigate(`${location.state ? location.state : "/"}`)
         toast.success("Login successful");
@@ -43,7 +43,7 @@ const Login = () => {
     googleLogin()
     .then((res) => {
         // console.log(res);
-        setLoading(false);
+        // setLoading(false);
         setUser(res.user);
         navigate(`${location.state ? location.state : "/"}`)
         toast.success("Google Login successful");
@@ -88,9 +88,9 @@ const Login = () => {
             {eye ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}
           </div>
 
-          <div className="text-center mt-4 text-gray-600 text-sm">
+          <Link to={'/auth/forget-pass'} className="text-center mt-4 text-gray-600 text-sm hover:underline hover:underline-offset-2">
             Forgot your password?
-          </div>
+          </Link>
 
           <button
             type="submit"

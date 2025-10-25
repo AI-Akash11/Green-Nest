@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
+import { DotLoader } from "react-spinners";
 
 const Navbar = () => {
     const links = <>
@@ -9,7 +10,7 @@ const Navbar = () => {
     <NavLink className={'px-2 py-1 text-sm rounded-2xl font-semibold text-gray-600'} to={'/plants'}>Plants</NavLink>
     <NavLink className={'px-2 py-1 text-sm rounded-2xl font-semibold text-gray-600'} to={'/myprofile'}>My Profile</NavLink>
     </>
-    const {user,logOut,setUser} = useContext(AuthContext)
+    const {user,logOut,setUser,loading} = useContext(AuthContext)
     // console.log(user)
     const handleLogOut = () =>{
       logOut()
@@ -65,6 +66,10 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {
+          loading
+          ?
+          <DotLoader></DotLoader>
+          :
         user 
         ? 
         <details className="dropdown dropdown-end">
@@ -96,6 +101,7 @@ const Navbar = () => {
         :
         <div className="navbar-end">
         <Link to={'/auth/login'} className="btn btn-success text-white">Login</Link>
+        <Link to={'/auth/signup'} className="btn btn-info ml-3 text-white">Register</Link>
       </div>
       }
       </div>

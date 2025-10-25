@@ -2,14 +2,17 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Signup = () => {
   const [nameError, setNameError] = useState("");
   const [photoError, setPhotoError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const { createUser, updateUser, setUser, googleLogin,setLoading} = useContext(AuthContext);
+  const { createUser, updateUser, setUser, googleLogin, setLoading } =
+    useContext(AuthContext);
   const navigate = useNavigate();
+  const [eye, setEye] = useState(true);
 
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -64,7 +67,7 @@ const Signup = () => {
           .then(() => {
             setUser({ ...user, displayName: name, photoURL: photo });
             navigate("/auth/login");
-            toast.success('Account created Successfully')
+            toast.success("Account created Successfully");
           })
           .catch((error) => {
             console.log(error);
@@ -74,25 +77,25 @@ const Signup = () => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert(errorMessage, errorCode);
+        toast.error(errorMessage, errorCode);
       });
   };
 
-  const handleGoogleLogIn =()=>{
-      // console.log("clicked");
-      googleLogin()
+  const handleGoogleLogIn = () => {
+    // console.log("clicked");
+    googleLogin()
       .then((res) => {
-          // console.log(res);
-          setLoading(false);
-          setUser(res.user);
-          navigate('/')
-          toast.success("Google Login successful");
-        })
-        .catch((e) => {
-          console.log(e);
-          toast.error(e.message);
-        });
-      };
+        // console.log(res);
+        // setLoading(false);
+        setUser(res.user);
+        navigate("/");
+        toast.success("Google Login successful");
+      })
+      .catch((e) => {
+        console.log(e);
+        toast.error(e.message);
+      });
+  };
   return (
     <div className="py-10 md:py-20 lg:py-30 flex justify-center items-center bg-base-100">
       <div className="bg-base-200 p-8 rounded-2xl shadow-[9px_9px_16px_#a3b1c6,-9px_-9px_16px_#ffffff] w-[400px] md:w-[500px]">
@@ -131,11 +134,19 @@ const Signup = () => {
 
           <label className="text-sm  mt-3 ml-1">Password</label>
           <input
-            type="text"
+            type={eye ? "password" : "text"}
             name="password"
             placeholder="Password"
             className="px-3 py-2 rounded-xl bg-[#e0e5ec] shadow-inner shadow-[#a3b1c6]/70 outline-none"
           />
+          <div
+            onClick={() => {
+              setEye(!eye);
+            }}
+            className="absolute right-4 top-[287px] text-xl cursor-pointer"
+          >
+            {eye ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}
+          </div>
           {passwordError && (
             <p className="text-xs text-error">{passwordError}</p>
           )}
@@ -164,7 +175,10 @@ const Signup = () => {
           <hr className="flex-grow border-t border-gray-400" />
         </div>
 
-        <button onClick={handleGoogleLogIn} className="btn bg-white text-black border-[#e5e5e5] w-full py-6 text-lg rounded-xl">
+        <button
+          onClick={handleGoogleLogIn}
+          className="btn bg-white text-black border-[#e5e5e5] w-full py-6 text-lg rounded-xl"
+        >
           <svg
             aria-label="Google logo"
             width="24"

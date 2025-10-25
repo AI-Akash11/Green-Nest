@@ -5,7 +5,7 @@ import { Link } from "react-router";
 const PlantCard = ({ plant }) => {
   const { plantName, category, price, rating, image, availableStock, plantId } = plant;
   return (
-    <Link to={`/plantDetails/${plantId}`} className="bg-white p-5 rounded-lg hover:scale-105 transition-all">
+    <div className="bg-white p-5 rounded-lg hover:scale-105 transition-all">
       <div className="rounded-2xl overflow-hidden">
         <img
           className="max-w-30 md:max-w-45 lg:max-w-60 object-cover mx-auto"
@@ -24,7 +24,7 @@ const PlantCard = ({ plant }) => {
             </span>
           </p>
 
-          <div className="flex gap-2 items-center text-sm md:text-lg text-yellow-500 font-semibold">
+          <div className="flex gap-2 items-center text-sm md:text-lg text-yellow-500 font-semibold justify-center">
             <p className="flex">
               <FaStar></FaStar>
               <FaStar></FaStar>
@@ -43,7 +43,10 @@ const PlantCard = ({ plant }) => {
           </p>
         </div>
       </div>
-    </Link>
+      <Link to={`/plantDetails/${plantId}`} className="btn btn-accent w-full">
+      View Details
+      </Link>
+    </div>
   );
 };
 

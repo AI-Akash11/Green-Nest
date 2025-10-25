@@ -12,11 +12,11 @@ const PlantProvider = ({ children }) => {
         .then((res)=> res.json())
         .then((data)=> {
             setPlants(data);
-            setLoading(false);
+            // setLoading(false);
         })
         .catch(error =>{
             console.log(error);
-            setLoading(false);
+            // setLoading(false);
         })
     },[]);
 
@@ -25,11 +25,11 @@ const PlantProvider = ({ children }) => {
         .then((res)=> res.json())
         .then((data)=> {
             setTips(data);
-            setLoading(false);
+            // setLoading(false);
         })
         .catch(error =>{
             console.log(error);
-            setLoading(false);
+            // setLoading(false);
         })
     },[]);
 

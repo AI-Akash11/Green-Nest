@@ -10,6 +10,7 @@ import Error from "../components/Error";
 import Loader from "../components/Loader";
 import PrivateRoute from "./PrivateRoute";
 import PlantDetails from "../pages/PlantDetails";
+import ForgetPass from "../pages/ForgetPass";
 
 export const router = createBrowserRouter([
     {
@@ -46,11 +47,16 @@ export const router = createBrowserRouter([
             {
                 path:'/auth/signup',
                 element: <Signup></Signup>,
+            },
+            {
+                path:'/auth/forget-pass',
+                element: <ForgetPass></ForgetPass>
             }
         ]
     },
     {
         path:'/plantDetails/:id',
+        hydrateFallbackElement: <Loader></Loader>,
         element: <PrivateRoute>
             <PlantDetails></PlantDetails>
         </PrivateRoute>

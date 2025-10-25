@@ -52,7 +52,7 @@ const PlantDetails = () => {
               <div className="grid grid-cols-2 gap-4 text-sm md:text-base">
                 <div className="flex items-center gap-2 text-gray-700">
                   <FaDollarSign className="text-green-500" />
-                  <span className="font-semibold">${pla.price}</span>
+                  <span className="font-semibold">{pla.price}</span>
                 </div>
                 <div className="flex items-center gap-2 text-yellow-500">
                   <FaStar />
