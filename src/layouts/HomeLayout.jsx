@@ -8,7 +8,7 @@ const HomeLayout = () => {
     const location = useLocation();
     
     return (
-        <div className="flex flex-col min-h-screen bg-slate-50 relative overflow-hidden">
+        <div className="flex flex-col min-h-screen bg-base-100 relative">
             <Navbar></Navbar>
             <AnimatePresence mode="wait">
                 {/* eslint-disable-next-line react/jsx-no-undef */}
@@ -18,7 +18,7 @@ const HomeLayout = () => {
                     animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     exit={{ opacity: 0, y: -15, filter: "blur(4px)" }}
                     transition={{ duration: 0.3, ease: 'easeOut' }}
-                    className="grow w-full"
+                    className="grow w-full overflow-hidden"
                 >
                     <Outlet></Outlet>
                 </motion.main>
