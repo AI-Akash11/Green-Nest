@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const DecorIdeas = () => {
   const ideas = [
@@ -26,34 +27,72 @@ const DecorIdeas = () => {
   ];
 
   return (
-    <section className="max-w-[1400px] mx-auto py-16 px-8 text-center">
-      <h2 className="text-3xl font-bold text-green-800 mb-3">
-        Eco Decor Ideas
-      </h2>
-      <p className="text-gray-600 mb-10">
-        Style your space naturally with indoor greenery
-      </p>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {ideas.map((idea) => (
-          <div
-            key={idea.id}
-            className="bg-white rounded-2xl shadow-md hover:shadow-lg hover:scale-105 transition-all overflow-hidden"
+    <section className="max-w-[1400px] mx-auto px-4 md:px-8 mb-24 lg:mb-32">
+      <div className="text-center mb-12 md:mb-16">
+          <motion.h2 
+             initial={{ opacity: 0, y: 20 }}
+             whileInView={{ opacity: 1, y: 0 }}
+             viewport={{ once: true }}
+             transition={{ duration: 0.6 }}
+             className="font-extrabold text-4xl md:text-5xl lg:text-6xl text-gray-900 tracking-tight"
           >
-            <img
-              src={idea.image}
-              alt={idea.title}
-              className="w-full h-56 object-cover"
-            />
-            <div className="p-5">
-              <h3 className="text-lg font-semibold text-green-700 mb-2">
+            Eco Decor <span className="text-green-500">Ideas</span>
+          </motion.h2>
+          <motion.p 
+             initial={{ opacity: 0 }}
+             whileInView={{ opacity: 1 }}
+             viewport={{ once: true }}
+             transition={{ delay: 0.2, duration: 0.6 }}
+             className="text-gray-500 mt-4 text-lg max-w-2xl mx-auto"
+          >
+            Style your space naturally with indoor greenery and mindful placement.
+          </motion.p>
+      </div>
+
+      <motion.div 
+         initial="hidden"
+         whileInView="visible"
+         viewport={{ once: true, margin: "-100px" }}
+         variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: { staggerChildren: 0.15 }
+            }
+         }}
+         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10"
+      >
+        {ideas.map((idea) => (
+          <motion.div
+            key={idea.id}
+            variants={{
+                hidden: { y: 30, opacity: 0 },
+                visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 100 } }
+            }}
+            className="group relative bg-white rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden cursor-pointer"
+          >
+            <div className="relative h-72 md:h-80 overflow-hidden">
+                <div className="absolute inset-0 bg-gray-900/10 group-hover:bg-transparent transition-colors z-10"></div>
+                <img
+                  src={idea.image}
+                  alt={idea.title}
+                  className="w-full h-full object-cover scale-100 group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                />
+            </div>
+            <div className="p-8 relative bg-white">
+              <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-green-600 transition-colors">
                 {idea.title}
               </h3>
-              <p className="text-gray-500 text-sm">{idea.description}</p>
+              <p className="text-gray-600 text-base leading-relaxed">{idea.description}</p>
+              
+              <div className="mt-6 flex items-center text-green-600 font-bold text-sm tracking-wide group-hover:translate-x-2 transition-transform">
+                READ MORE 
+                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M9 5l7 7-7 7"></path></svg>
+              </div>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };
