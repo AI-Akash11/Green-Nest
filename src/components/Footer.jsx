@@ -20,11 +20,15 @@ const Footer = () => {
             transition={{ duration: 0.5 }}
             className="flex flex-col gap-6"
           >
-            <Link to="/" className="flex items-center gap-2 text-2xl font-bold text-white group">
-                <span className="w-10 h-10 bg-green-500 rounded-xl flex items-center justify-center text-white group-hover:bg-yellow-400 group-hover:rotate-12 transition-all shadow-lg">
-                   <FaLeaf />
+            <Link to="/" className="flex items-center group">
+                <img 
+                    className="w-10 h-10 object-contain drop-shadow-md group-hover:rotate-12 transition-transform duration-500" 
+                    src="https://i.ibb.co.com/dyt4mZT/plant-logo.png" 
+                    alt="GreenNest Logo" 
+                />
+                <span className="text-2xl ml-3 font-extrabold tracking-tight text-yellow-400">
+                    <span className="text-green-500">Green</span>Nest
                 </span>
-                Green Nest
             </Link>
             <p className="text-green-200/80 leading-relaxed text-sm pr-4">
               Cultivating joy and purifying the air in your home with premium, hand-selected indoor plants.

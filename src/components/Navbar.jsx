@@ -141,11 +141,15 @@ const Navbar = () => {
               className="fixed left-0 top-0 h-full w-[80%] max-w-sm bg-white z-[100] lg:hidden shadow-2xl flex flex-col p-6"
             >
               <div className="flex justify-between items-center mb-10">
-                <div className="flex items-center gap-2">
-                    <div className="w-10 h-10 bg-green-500 rounded-xl flex items-center justify-center text-white shadow-lg">
-                        <FaLeaf />
-                    </div>
-                    <span className="text-2xl font-black text-gray-800 tracking-tighter">Green Nest</span>
+                <div className="flex items-center group cursor-pointer">
+                    <img 
+                        className="w-10 h-10 object-contain drop-shadow-md" 
+                        src="https://i.ibb.co.com/dyt4mZT/plant-logo.png" 
+                        alt="GreenNest Logo" 
+                    />
+                    <Link to={'/'} className="text-2xl ml-3 font-extrabold tracking-tight text-yellow-400">
+                        <span className="text-green-500">Green</span>Nest
+                    </Link>
                 </div>
                 <button 
                     onClick={() => setIsMenuOpen(false)}

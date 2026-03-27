@@ -19,7 +19,7 @@ const HomeLayout = () => {
                     transition={{ duration: 0.3 }}
                     className="grow w-full"
                 >
-                    <div className="pb-8 md:pb-12">
+                    <div className="pb-10 md:pb-16">
                         <Outlet></Outlet>
                     </div>
                 </motion.main>

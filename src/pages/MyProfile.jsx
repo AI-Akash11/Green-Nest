@@ -36,7 +36,7 @@ const MyProfile = () => {
   };
 
   return (
-    <div className="flex flex-col items-center py-6 md:py-12 px-4">
+    <div className="flex flex-col items-center pt-6 md:pt-12 px-4">
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}

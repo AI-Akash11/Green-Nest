@@ -30,7 +30,7 @@ const Home = () => {
             </motion.div>
             
             <Hero></Hero>
-            <div className="space-y-20 lg:space-y-32 pb-4">
+            <div className="space-y-20 lg:space-y-32">
                 <TopRatedPlant></TopRatedPlant>
                 <PlantOf></PlantOf>
                 <Tips></Tips>
