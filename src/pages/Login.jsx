@@ -41,13 +41,46 @@ const Login = () => {
 
   return (
     <div className="flex min-h-screen bg-base-100">
-      {/* Left Form Section */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 md:p-12 lg:p-20 relative z-10 bg-white">
+      {/* Left Image Section */}
+      <motion.div 
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="hidden lg:flex w-1/2 relative bg-green-900 border-r border-green-800"
+      >
+        <img 
+          src="https://images.unsplash.com/photo-1545241047-6083a3684587?q=80&w=2670&auto=format&fit=crop" 
+          alt="Lush green indoor plants" 
+          className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-80"
+        />
+        <div className="absolute inset-0 bg-linear-to-t from-gray-900/90 via-gray-900/20 to-transparent z-10"></div>
+        <div className="relative z-20 flex flex-col justify-center p-12 md:p-16 lg:p-20 h-full text-white">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="text-5xl font-extrabold leading-tight mb-4"
+          >
+            Nature's Touch.<br/>Right at Home.
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="text-lg text-emerald-100 max-w-md leading-relaxed"
+          >
+            Access your curated collection, track your botanical orders, and consult with our plant experts—all in one place.
+          </motion.p>
+        </div>
+      </motion.div>
+
+      {/* Right Form Section */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-6 md:p-10 lg:p-16 relative z-10 bg-white">
         <motion.div 
-          initial={{ opacity: 0, x: -30 }}
+          initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="w-full max-w-md"
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="w-full max-w-sm"
         >
           <div className="mb-10 text-center lg:text-left">
             <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-3 tracking-tight">
@@ -127,34 +160,6 @@ const Login = () => {
             </Link>
           </p>
         </motion.div>
-      </div>
-
-      {/* Right Image Section */}
-      <div className="hidden lg:flex w-1/2 relative bg-green-900 border-l border-green-800">
-        <img 
-          src="https://images.unsplash.com/photo-1416879598555-220b8ebed709?q=80&w=2670&auto=format&fit=crop" 
-          alt="Lush green indoor plants" 
-          className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-80"
-        />
-        <div className="absolute inset-0 bg-linear-to-t from-gray-900/90 via-gray-900/20 to-transparent z-10"></div>
-        <div className="relative z-20 flex flex-col justify-end p-20 h-full text-white">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-5xl font-extrabold leading-tight mb-4"
-          >
-            Nature's Touch.<br/>Right at Home.
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="text-lg text-emerald-100 max-w-md leading-relaxed"
-          >
-            Access your curated collection, track your botanical orders, and consult with our plant experts—all in one place.
-          </motion.p>
-        </div>
       </div>
     </div>
   );
