@@ -24,17 +24,30 @@ const Navbar = () => {
     );
 
     const {user,logOut,setUser,loading} = useContext(AuthContext)
+    const [isProfileOpen, setIsProfileOpen] = useState(false);
     
     const handleLogOut = () =>{
       logOut()
       .then(()=>{
         setUser(null)
+        setIsProfileOpen(false);
         toast.success("User logged out successfully")
       })
       .catch(e=>{
         console.log(e)
       })
     }
+
+    // Close dropdown on outside click
+    React.useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (isProfileOpen && !event.target.closest('.profile-dropdown-container')) {
+                setIsProfileOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, [isProfileOpen]);
     
   return (
     <>
@@ -82,33 +95,73 @@ const Navbar = () => {
             {loading ? (
               <DotLoader color="#22c55e" size={30} />
             ) : user ? (
-              <details className="dropdown dropdown-end relative">
-                <summary className="btn btn-ghost btn-circle avatar m-1 p-0 border-2 border-transparent hover:border-green-500 transition-all rounded-full overflow-hidden shadow-sm">
-                  <img
-                    src={user.photoURL || "https://i.pravatar.cc/150"}
-                    alt="user profile"
-                    className="w-10 h-10 object-cover"
-                  />
-                </summary>
+              <div className="relative profile-dropdown-container">
+                <button 
+                  onClick={() => setIsProfileOpen(!isProfileOpen)}
+                  className={`flex items-center gap-2 p-1 pr-3 rounded-full transition-all border ${isProfileOpen ? 'bg-green-50 border-green-200 shadow-sm' : 'border-transparent hover:bg-green-50 hover:border-green-100'}`}
+                >
+                  <div className="w-10 h-10 rounded-full border-2 border-green-500 p-0.5">
+                    <img
+                      src={user.photoURL || "https://i.pravatar.cc/150"}
+                      alt="user profile"
+                      className="w-full h-full object-cover rounded-full"
+                    />
+                  </div>
+                  <div className="hidden md:block text-left">
+                     <p className="text-xs font-black text-gray-800 leading-tight truncate max-w-[100px]">{user.displayName || "Member"}</p>
+                     <p className="text-[10px] font-bold text-green-500 uppercase tracking-tighter">Verified</p>
+                  </div>
+                </button>
 
-                <ul className="menu dropdown-content bg-base-100 rounded-2xl w-64 p-5 shadow-2xl border border-gray-100 mt-4 origin-top-right">
-                  <li className="flex flex-col gap-1 items-start w-full px-2 py-1 pointer-events-none">
-                    <p className="font-bold text-gray-800 text-lg truncate w-full">{user.displayName || "User"}</p>
-                    <p className="text-xs text-gray-500 truncate w-full">{user.email}</p>
-                  </li>
+                {/* Dropdown Menu */}
+                <AnimatePresence>
+                    {isProfileOpen && (
+                        <motion.div 
+                            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                            transition={{ duration: 0.2 }}
+                            className="absolute right-0 mt-3 w-64 origin-top-right rounded-3xl bg-white shadow-2xl border border-gray-100 z-[60] p-6"
+                        >
+                            <div className="flex flex-col items-center text-center mb-6">
+                                <div className="relative mb-3">
+                                    <img
+                                        src={user.photoURL || "https://i.pravatar.cc/150"}
+                                        alt="profile avatar"
+                                        className="w-16 h-16 rounded-full border-4 border-green-50 object-cover"
+                                    />
+                                    <div className="absolute bottom-0 right-0 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></div>
+                                </div>
+                                <h4 className="font-black text-gray-900 text-lg leading-tight">{user.displayName || "Botanist"}</h4>
+                                <p className="text-xs text-gray-400 font-medium truncate w-full px-4">{user.email}</p>
+                            </div>
 
-                  <div className="divider my-2 opacity-50 hidden md:flex"></div>
-
-                  <li className="w-full">
-                    <button
-                      onClick={handleLogOut}
-                      className="w-full btn bg-yellow-400 hover:bg-yellow-500 text-white border-none rounded-xl mt-2 transition-all shadow-sm"
-                    >
-                      Logout
-                    </button>
-                  </li>
-                </ul>
-              </details> 
+                            <div className="space-y-1">
+                                <Link 
+                                    to="/myprofile" 
+                                    onClick={() => setIsProfileOpen(false)}
+                                    className="flex items-center gap-3 px-4 py-3 text-sm font-bold text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-2xl transition-all group"
+                                >
+                                    <div className="w-8 h-8 rounded-lg bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-green-100 group-hover:text-green-500 transition-colors">
+                                        <FaLeaf size={12} />
+                                    </div>
+                                    Account Settings
+                                </Link>
+                                
+                                <button
+                                    onClick={handleLogOut}
+                                    className="flex items-center gap-3 w-full px-4 py-3 text-sm font-bold text-red-500 hover:bg-red-50 rounded-2xl transition-all group"
+                                >
+                                    <div className="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center text-red-400 group-hover:bg-red-100 transition-colors">
+                                        <span className="text-lg">↩</span>
+                                    </div>
+                                    Logout Session
+                                </button>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+              </div>
             ) : (
               <div className="flex gap-2">
                 <Link to={'/auth/login'} className="btn btn-success text-white rounded-full px-6 font-semibold shadow-md border-none">Login</Link>
