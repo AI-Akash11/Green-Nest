@@ -2,10 +2,13 @@ import React, { use } from "react";
 import { PlantContext } from "../contexts/PlantContext";
 import PlantCard from "../components/PlantCard";
 import { motion } from "framer-motion";
+import Loader from "../components/Loader";
 
 const Plants = () => {
   const { plants } = use(PlantContext);
   
+  if (!plants || plants.length === 0) return <Loader />;
+
   return (
     <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8">
         {/* Page Header */}

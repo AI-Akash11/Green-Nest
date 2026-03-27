@@ -3,6 +3,7 @@ import { PlantContext } from "../contexts/PlantContext";
 import { useParams, useNavigate } from "react-router";
 import { FaLeaf, FaStar, FaWarehouse, FaShieldAlt, FaTruck, FaUndo, FaArrowLeft } from "react-icons/fa";
 import { motion } from "framer-motion";
+import Loader from "../components/Loader";
 
 const PlantDetails = () => {
   const [pla, setPla] = useState({});
@@ -16,11 +17,7 @@ const PlantDetails = () => {
     setPla(foundPlant);
   }, [id, plants]);
 
-  if (!pla || !pla.plantName) return (
-    <div className="min-h-[60vh] flex items-center justify-center">
-        <span className="loading loading-spinner loading-lg text-green-500"></span>
-    </div>
-  );
+  if (!pla || !pla.plantName) return <Loader />;
 
   return (
     <div className="container mx-auto px-4 md:px-8 max-w-[1400px] mt-8 md:mt-12">

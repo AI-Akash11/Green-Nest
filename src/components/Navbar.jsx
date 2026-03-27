@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
-import { DotLoader } from "react-spinners";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaTimes, FaLeaf } from "react-icons/fa";
 
@@ -93,7 +92,22 @@ const Navbar = () => {
           
           <div className="navbar-end gap-3 z-20">
             {loading ? (
-              <DotLoader color="#22c55e" size={30} />
+              <div className="mr-4 flex items-center justify-center">
+                <motion.div
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    opacity: [0.5, 1, 0.5]
+                  }}
+                  transition={{ 
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  className="text-green-500 text-xl"
+                >
+                  <FaLeaf />
+                </motion.div>
+              </div>
             ) : user ? (
               <div className="relative profile-dropdown-container">
                 <button 

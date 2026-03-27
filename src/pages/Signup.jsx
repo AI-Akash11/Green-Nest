@@ -10,7 +10,7 @@ const Signup = () => {
   const [photoError, setPhotoError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const { createUser, updateUser, setUser, googleLogin, setLoading } =
+  const { createUser, updateUser, setUser, googleLogin } =
     useContext(AuthContext);
   const navigate = useNavigate();
   const [eye, setEye] = useState(true);
