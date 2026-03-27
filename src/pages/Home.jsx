@@ -9,12 +9,12 @@ import { motion } from "framer-motion";
 
 const Home = () => {
     return (
-        <div className="pb-20">
+        <div>
             <motion.div 
                initial={{ opacity: 0, scale: 0.95, y: -10 }}
                animate={{ opacity: 1, scale: 1, y: 0 }}
                transition={{ duration: 0.8, ease: "easeOut" }}
-               className="text-center mt-10 md:mt-16 mb-4 px-4"
+               className="text-center mt-10 md:mt-16 mb-4 px-4 md:px-8 max-w-[1400px] mx-auto"
             >
                 <h2 className='font-extrabold text-5xl md:text-6xl lg:text-7xl tracking-tight text-green-500 drop-shadow-sm'>
                     Nature <span className='text-yellow-400'>Inside</span> Home
@@ -30,7 +30,7 @@ const Home = () => {
             </motion.div>
             
             <Hero></Hero>
-            <div className="space-y-16 md:space-y-24">
+            <div className="space-y-20 lg:space-y-32 pb-4">
                 <TopRatedPlant></TopRatedPlant>
                 <PlantOf></PlantOf>
                 <Tips></Tips>

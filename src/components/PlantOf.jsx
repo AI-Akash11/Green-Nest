@@ -10,7 +10,7 @@ const PlantOf = () => {
     };
 
     return (
-        <section className="px-4 md:px-8 max-w-[1400px] mx-auto mb-24 lg:mb-32">
+        <section className="px-4 md:px-8 max-w-[1400px] mx-auto">
             <motion.div 
               initial={{ opacity: 0, scale: 0.98 }}
               whileInView={{ opacity: 1, scale: 1 }}

@@ -9,7 +9,7 @@ const Footer = () => {
       {/* Decorative Blur */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-24 bg-green-500/20 blur-3xl rounded-full pointer-events-none"></div>
 
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 relative z-10">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           
           {/* Brand Column */}

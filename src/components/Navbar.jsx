@@ -29,13 +29,14 @@ const Navbar = () => {
     }
     
   return (
-    <motion.div 
+    <motion.header 
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 100, damping: 20 }}
-      className="navbar sticky top-0 z-50 bg-white/70 backdrop-blur-xl shadow-md border-b border-gray-100 md:px-10 lg:px-20"
+      className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl shadow-sm border-b border-gray-100"
     >
-      <div className="navbar-start">
+      <div className="navbar w-full max-w-[1400px] mx-auto px-4 md:px-8">
+        <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden rounded-full hover:bg-green-50">
             <svg
@@ -118,7 +119,8 @@ const Navbar = () => {
           </div>
         )}
       </div>
-    </motion.div>
+      </div>
+    </motion.header>
   );
 };
 

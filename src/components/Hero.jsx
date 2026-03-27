@@ -15,7 +15,7 @@ const Hero = () => {
       initial={{ opacity: 0, scale: 0.98 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="max-w-[1400px] mx-auto mb-20 mt-10 px-4"
+      className="max-w-[1400px] mx-auto mb-20 mt-10 px-4 md:px-8"
     >
       <div className="relative rounded-3xl overflow-hidden shadow-2xl drop-shadow-lg border border-gray-100">
         <Swiper

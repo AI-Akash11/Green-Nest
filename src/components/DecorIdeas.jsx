@@ -27,7 +27,7 @@ const DecorIdeas = () => {
   ];
 
   return (
-    <section className="max-w-[1400px] mx-auto px-4 md:px-8 mb-24 lg:mb-32">
+    <section className="max-w-[1400px] mx-auto px-4 md:px-8">
       <div className="text-center mb-12 md:mb-16">
           <motion.h2 
              initial={{ opacity: 0, y: 20 }}
