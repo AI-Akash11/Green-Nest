@@ -1,10 +1,11 @@
 import React from "react";
-import { FaStar, FaStarHalf } from "react-icons/fa";
-import { Link } from "react-router";
+import { FaStar } from "react-icons/fa";
+import { useNavigate } from "react-router";
 import { motion } from "framer-motion";
 
 const PlantCard = ({ plant }) => {
   const { plantName, category, price, rating, image, availableStock, plantId } = plant;
+  const navigate = useNavigate();
   
   return (
     <motion.div 
@@ -13,7 +14,8 @@ const PlantCard = ({ plant }) => {
       viewport={{ once: true, margin: "-50px" }}
       whileHover={{ y: -8 }}
       transition={{ duration: 0.4 }}
-      className="bg-white p-3 md:p-4 rounded-3xl shadow-lg hover:shadow-2xl transition-shadow border border-gray-100 group relative flex flex-col h-full"
+      onClick={() => navigate(`/plantDetails/${plantId}`)}
+      className="bg-white p-3 md:p-4 rounded-3xl shadow-lg hover:shadow-2xl transition-shadow border border-gray-100 group relative flex flex-col h-full cursor-pointer"
     >
       {/* Image Container with floating effect */}
       <div className="rounded-2xl overflow-hidden bg-slate-50 relative aspect-square md:aspect-auto md:h-56 lg:h-64 flex items-center justify-center mb-3 md:mb-5">
@@ -29,9 +31,9 @@ const PlantCard = ({ plant }) => {
         
         {/* Quick View Overlay Button */}
         <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 flex items-center justify-center backdrop-blur-[2px]">
-            <Link to={`/plantDetails/${plantId}`} className="btn btn-accent btn-sm md:btn-md px-4 md:px-8 font-bold rounded-full shadow-lg transform translate-y-6 group-hover:translate-y-0 text-white transition-all duration-300 border-none">
+            <div className="btn btn-accent btn-sm md:btn-md px-4 md:px-8 font-bold rounded-full shadow-lg transform translate-y-6 group-hover:translate-y-0 text-white transition-all duration-300 border-none">
                 Quick View
-            </Link>
+            </div>
         </div>
       </div>
 
@@ -42,11 +44,9 @@ const PlantCard = ({ plant }) => {
                 <span className="text-[9px] md:text-sm text-yellow-600 font-bold tracking-widest uppercase bg-green-200 px-2 py-0.5 md:px-3 md:py-1 rounded-full inline-block mb-1 md:mb-3">
                 {category}
                 </span>
-                <Link to={`/plantDetails/${plantId}`} className="block">
-                  <h2 className="text-sm md:text-xl lg:text-2xl font-bold text-gray-800 leading-tight hover:text-green-500 transition-colors truncate">
+                <h2 className="text-sm md:text-xl lg:text-2xl font-bold text-gray-800 leading-tight group-hover:text-green-500 transition-colors truncate">
                   {plantName}
-                  </h2>
-                </Link>
+                </h2>
             </div>
             
             <div className="flex flex-col items-start md:items-end transform group-hover:scale-110 transition-transform origin-left md:origin-right mt-1 md:mt-0">

@@ -2,15 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { PlantContext } from "../contexts/PlantContext";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import { toast } from "react-toastify";
-import { FaLeaf, FaStar, FaDollarSign, FaWarehouse, FaShieldAlt, FaTruck, FaUndo } from "react-icons/fa";
+import { FaLeaf, FaStar, FaDollarSign, FaWarehouse, FaShieldAlt, FaTruck, FaUndo, FaArrowLeft } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const PlantDetails = () => {
   const [pla, setPla] = useState({});
   const { plants } = useContext(PlantContext);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0,0);
@@ -30,7 +31,18 @@ const PlantDetails = () => {
     <div className="min-h-screen flex flex-col bg-base-100">
       <Navbar />
 
-      <div className="flex-1 container mx-auto px-4 md:px-8 py-12 max-w-[1400px]">
+      <div className="flex-1 container mx-auto px-4 md:px-8 py-8 md:py-12 max-w-[1400px]">
+        {/* Back Button */}
+        <motion.button
+          initial={{ opacity: 0, x: -10 }}
+          animate={{ opacity: 1, x: 0 }}
+          onClick={() => navigate(-1)}
+          className="flex items-center gap-2 text-gray-500 hover:text-green-600 font-bold mb-8 transition-colors group"
+        >
+          <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
+          Go Back
+        </motion.button>
+
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start relative">
 
           {/* Left Column - Sticky Image */}
