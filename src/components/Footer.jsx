@@ -92,14 +92,36 @@ const Footer = () => {
             <p className="text-green-200/80 text-sm leading-relaxed mb-4">
               Join our newsletter for exclusive plant tips and 10% off your first order!
             </p>
-            <form className="flex rounded-xl overflow-hidden shadow-lg border border-green-800 focus-within:border-green-500 transition-colors">
+            <form 
+              onSubmit={(e) => {
+                e.preventDefault();
+                const email = e.target.email.value;
+                if (email) {
+                  import('sweetalert2').then((Swal) => {
+                    Swal.default.fire({
+                      title: 'Welcome to the Jungle! 🌿',
+                      text: "You've successfully subscribed to our newsletter.",
+                      icon: 'success',
+                      background: '#064e3b',
+                      color: '#f0fdf4',
+                      confirmButtonColor: '#22c55e',
+                      borderRadius: '24px'
+                    });
+                  });
+                  e.target.reset();
+                }
+              }}
+              className="flex rounded-xl overflow-hidden shadow-lg border border-green-800 focus-within:border-green-500 transition-colors"
+            >
                <input 
+                 name="email"
                  type="email" 
                  placeholder="Enter your email" 
                  className="w-full bg-green-900/50 px-4 py-3 text-sm text-white focus:outline-none placeholder:text-green-400"
+                 required
                />
                <button 
-                 type="button" 
+                 type="submit" 
                  className="bg-green-500 hover:bg-green-400 text-white px-5 py-3 font-bold transition-colors text-sm"
                >
                  Join

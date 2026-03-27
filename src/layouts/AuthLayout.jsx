@@ -9,7 +9,6 @@ const AuthLayout = () => {
     
     return (
         <div className="flex flex-col min-h-screen bg-base-100 relative">
-            <Navbar></Navbar>
             <AnimatePresence mode="wait">
                 <motion.main
                     key={location.pathname}
@@ -22,7 +21,6 @@ const AuthLayout = () => {
                     <Outlet></Outlet>
                 </motion.main>
             </AnimatePresence>
-            <Footer></Footer>
         </div>
     );
 };

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Link } from "react-router";
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -81,15 +82,12 @@ const Hero = () => {
                     Enhance your living space with our premium {plant.category.toLowerCase()} — {plant.plantName}.
                   </motion.p>
                   
-                  <motion.button
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: false }}
-                    transition={{ delay: 0.9, duration: 0.5 }}
-                    className="btn btn-success text-white rounded-full px-8 py-3 shadow-xl transform hover:-translate-y-1 transition-all border-none"
+                  <Link
+                    to="/plants"
+                    className="inline-block btn btn-success text-white rounded-full px-8 py-3 shadow-xl transform hover:-translate-y-1 transition-all border-none"
                   >
                     Explore Now
-                  </motion.button>
+                  </Link>
                 </motion.div>
               </div>
             </SwiperSlide>

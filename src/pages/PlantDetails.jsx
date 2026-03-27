@@ -139,7 +139,22 @@ const PlantDetails = () => {
 
           {/* CTA Section */}
           <div className="pt-6">
-            <button className="w-full py-6 bg-green-950 text-white text-xl font-black rounded-[2rem] hover:bg-green-900 transition-all shadow-2xl hover:shadow-green-900/40 flex items-center justify-center gap-4 group">
+            <button 
+              onClick={() => {
+                import('sweetalert2').then((Swal) => {
+                  Swal.default.fire({
+                    title: 'Botanical Success! 🪴',
+                    text: `${pla.plantName} has been added to your collection.`,
+                    icon: 'success',
+                    confirmButtonColor: '#052c22',
+                    borderRadius: '32px',
+                    timer: 3000,
+                    showConfirmButton: false
+                  });
+                });
+              }}
+              className="w-full py-6 bg-green-950 text-white text-xl font-black rounded-[2rem] hover:bg-green-900 transition-all shadow-2xl hover:shadow-green-900/40 flex items-center justify-center gap-4 group"
+            >
               Add To Collection
               <motion.span animate={{ x: [0, 5, 0] }} transition={{ repeat: Infinity, duration: 2 }}>
                 →

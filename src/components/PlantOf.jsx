@@ -1,5 +1,5 @@
-import React from 'react';
 import { motion } from "framer-motion";
+import { Link } from 'react-router';
 
 const PlantOf = () => {
     const plant = {
@@ -69,9 +69,12 @@ const PlantOf = () => {
                          viewport={{ once: true }}
                          transition={{ delay: 0.6 }}
                       >
-                           <button className="bg-white text-green-700 hover:bg-yellow-400 hover:text-green-900 font-bold px-8 py-4 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(250,204,21,0.3)] text-lg">
+                           <Link 
+                             to="/plants"
+                             className="inline-block bg-white text-green-700 hover:bg-yellow-400 hover:text-green-900 font-bold px-8 py-4 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(250,204,21,0.3)] text-lg"
+                           >
                              Discover More
-                           </button>
+                           </Link>
                       </motion.div>
                   </div>
 
