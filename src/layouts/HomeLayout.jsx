@@ -8,19 +8,20 @@ const HomeLayout = () => {
     const location = useLocation();
     
     return (
-        <div className="flex flex-col min-h-screen bg-base-100 relative">
+        <div className="flex flex-col min-h-screen bg-slate-50 relative">
             <Navbar></Navbar>
             <AnimatePresence mode="wait">
-                {/* eslint-disable-next-line react/jsx-no-undef */}
                 <motion.main
                     key={location.pathname}
-                    initial={{ opacity: 0, y: 15, filter: "blur(4px)" }}
-                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    exit={{ opacity: 0, y: -15, filter: "blur(4px)" }}
-                    transition={{ duration: 0.3, ease: 'easeOut' }}
-                    className="grow w-full overflow-hidden"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3 }}
+                    className="grow w-full"
                 >
-                    <Outlet></Outlet>
+                    <div className="pb-8 md:pb-12">
+                        <Outlet></Outlet>
+                    </div>
                 </motion.main>
             </AnimatePresence>
             <Footer></Footer>

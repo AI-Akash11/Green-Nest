@@ -1,10 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import { PlantContext } from "../contexts/PlantContext";
 import { useParams, useNavigate } from "react-router";
-import { toast } from "react-toastify";
-import { FaLeaf, FaStar, FaDollarSign, FaWarehouse, FaShieldAlt, FaTruck, FaUndo, FaArrowLeft } from "react-icons/fa";
+import { FaLeaf, FaStar, FaWarehouse, FaShieldAlt, FaTruck, FaUndo, FaArrowLeft } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const PlantDetails = () => {
@@ -14,181 +11,143 @@ const PlantDetails = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
     const foundPlant = plants.find((plant) => plant.plantId == id);
     setPla(foundPlant);
   }, [id, plants]);
 
-  const handleBookConsultation = (e) => {
-    e.preventDefault();
-    e.target.reset();
-    toast.success("Consultation booked successfully!");
-  };
-
-  if (!pla) return null;
+  if (!pla || !pla.plantName) return (
+    <div className="min-h-[60vh] flex items-center justify-center">
+        <span className="loading loading-spinner loading-lg text-green-500"></span>
+    </div>
+  );
 
   return (
-    <div className="min-h-screen flex flex-col bg-base-100">
-      <Navbar />
+    <div className="container mx-auto px-4 md:px-8 max-w-[1400px] mt-8 md:mt-12">
+      {/* Back Button */}
+      <motion.button
+        initial={{ opacity: 0, x: -10 }}
+        animate={{ opacity: 1, x: 0 }}
+        onClick={(e) => {
+          e.stopPropagation();
+          navigate(-1);
+        }}
+        className="relative z-30 flex items-center gap-2 text-gray-500 hover:text-green-600 font-bold mb-8 transition-colors group cursor-pointer"
+      >
+        <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
+        Go Back
+      </motion.button>
 
-      <div className="flex-1 container mx-auto px-4 md:px-8 py-8 md:py-12 max-w-[1400px]">
-        {/* Back Button */}
-        <motion.button
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ opacity: 1, x: 0 }}
-          onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-gray-500 hover:text-green-600 font-bold mb-8 transition-colors group"
-        >
-          <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
-          Go Back
-        </motion.button>
+      <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start relative">
+        {/* Left Column - Sticky Image */}
+        <div className="w-full lg:w-1/2 lg:sticky lg:top-32 h-fit">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative overflow-hidden group border border-gray-100"
+          >
+            {/* Decorative elements */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-green-400/10 rounded-full blur-3xl -ml-16 -mb-16"></div>
 
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start relative">
-
-          {/* Left Column - Sticky Image */}
-          <div className="w-full lg:w-[45%] lg:sticky lg:top-36 z-10">
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
+            <motion.img
+              whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.6 }}
-              className="relative group rounded-4xl overflow-hidden shadow-sm hover:shadow-2xl transition-shadow border border-gray-100 bg-slate-50 p-8 md:p-16 aspect-square md:aspect-4/5 flex items-center justify-center"
+              src={pla.image}
+              className="w-full h-[300px] md:h-[450px] object-contain relative z-10 drop-shadow-2xl"
+              alt={pla.plantName}
+            />
+          </motion.div>
+
+          {/* Price Card overlay for mobile */}
+          <div className="lg:hidden mt-6 bg-green-950 p-6 rounded-3xl text-white flex justify-between items-center shadow-xl">
+            <div>
+              <p className="text-xs text-green-400 font-bold uppercase tracking-wider">Current Price</p>
+              <p className="text-3xl font-black">${pla.price}</p>
+            </div>
+            <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
+              <FaStar className="text-yellow-400" />
+              <span className="font-bold">{pla.rating}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column - Product Info */}
+        <div className="w-full lg:w-1/2 space-y-10">
+          {/* Header info */}
+          <div>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="flex items-center gap-3 mb-6"
             >
-              <motion.img
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.8 }}
-                src={pla.image}
-                alt={pla.plantName}
-                className="w-full max-h-full object-contain relative z-10 drop-shadow-2xl"
-              />
-              <div className="absolute inset-0 bg-green-100 opacity-50 rounded-full blur-3xl scale-150"></div>
+              <span className="px-5 py-1.5 bg-green-100 text-green-700 rounded-full text-xs font-black uppercase tracking-[0.2em]">
+                {pla.category}
+              </span>
+              {pla.availableStock > 0 ? (
+                <span className="flex items-center gap-1.5 text-[10px] font-bold text-green-500 bg-green-500/10 px-3 py-1 rounded-full">
+                  <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+                  IN STOCK
+                </span>
+              ) : (
+                <span className="text-[10px] font-bold text-red-500 bg-red-500/10 px-3 py-1 rounded-full">OUT OF STOCK</span>
+              )}
             </motion.div>
+            <h1 className="text-5xl md:text-7xl font-black text-gray-900 tracking-tighter leading-none mb-6">
+              {pla.plantName}
+            </h1>
+            <div className="hidden lg:flex items-baseline gap-4 mb-4">
+              <span className="text-6xl font-black text-green-600 tracking-tighter">${pla.price}</span>
+              <div className="flex items-center gap-1 text-yellow-500 bg-yellow-50 px-3 py-1 rounded-full border border-yellow-100">
+                <FaStar className="text-xs" />
+                <span className="text-sm font-black text-yellow-700">{pla.rating}</span>
+              </div>
+            </div>
           </div>
 
-          {/* Right Column - Details */}
-          <div className="w-full lg:w-[55%] space-y-8 lg:pb-20">
-            {/* Header Card */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white rounded-4xl p-8 md:p-10 shadow-xl border border-gray-100"
-            >
-              <span className="inline-block px-4 py-1.5 rounded-full bg-green-100 text-green-700 font-bold text-xs uppercase tracking-widest mb-4">
-                {pla.category || 'Premium Plant'}
-              </span>
-              <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4 leading-tight">
-                {pla.plantName}
-              </h1>
-              <p className="text-xl md:text-2xl text-gray-500 italic mb-6 font-medium">
-                "{pla.slogan}"
-              </p>
-              
-              <div className="flex flex-wrap items-center gap-6 mb-8 pb-8 border-b border-gray-100">
-                <div className="flex flex-col">
-                  <span className="text-sm text-gray-400 font-semibold uppercase tracking-wider mb-1">Price</span>
-                  <div className="flex items-center text-3xl font-black text-gray-900">
-                    <span className="text-green-500 mr-1">$</span>{pla.price}
-                  </div>
-                </div>
-                <div className="w-px h-12 bg-gray-200 hidden sm:block"></div>
-                <div className="flex flex-col">
-                  <span className="text-sm text-gray-400 font-semibold uppercase tracking-wider mb-1">Rating</span>
-                  <div className="flex items-center gap-1.5 text-xl font-bold text-gray-800">
-                    <FaStar className="text-yellow-400 text-2xl" /> {pla.rating}
-                  </div>
-                </div>
-                <div className="w-px h-12 bg-gray-200 hidden sm:block"></div>
-                <div className="flex flex-col">
-                  <span className="text-sm text-gray-400 font-semibold uppercase tracking-wider mb-1">Status</span>
-                  <div className="flex items-center gap-2 text-lg font-bold">
-                     <span className={`w-3 h-3 rounded-full ${pla.availableStock > 0 ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`}></span>
-                     {pla.availableStock > 0 ? <span className="text-green-600">In Stock</span> : <span className="text-red-500">Out of Stock</span>}
-                  </div>
-                </div>
-              </div>
+          {/* Description card */}
+          <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-xl">
+            <h3 className="text-lg font-black text-gray-800 mb-4 flex items-center gap-2">
+              <FaLeaf className="text-green-500" /> About this plant
+            </h3>
+            <p className="text-gray-600 leading-relaxed text-lg">
+              {pla.description || "Discover the beauty and serenity of this exquisite botanical specimen. Perfectly curated to bring a touch of natural luxury to your living space while purifying your air and calming your mind."}
+            </p>
+          </div>
 
-              <div className="space-y-4">
-                <h3 className="text-xl font-bold text-gray-800">About this plant</h3>
-                <p className="text-gray-600 text-lg leading-relaxed">
-                  {pla.description}
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Feature Marquee / Badges */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="grid grid-cols-1 sm:grid-cols-3 gap-4"
-            >
-                <div className="bg-white p-5 rounded-3xl border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center gap-2">
-                    <div className="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center text-green-500 text-xl mb-1">
-                        <FaShieldAlt />
-                    </div>
-                    <h4 className="font-bold text-gray-800 text-sm">Secure Packaging</h4>
+          {/* Specs Grid */}
+          <div className="grid grid-cols-2 gap-4">
+            {[
+              { icon: <FaWarehouse />, label: "Origin", val: "Tropical" },
+              { icon: <FaShieldAlt />, label: "Warranty", val: "1 Year" },
+              { icon: <FaTruck />, label: "Delivery", val: "Free" },
+              { icon: <FaUndo />, label: "Returns", val: "30 Days" }
+            ].map((item, idx) => (
+              <motion.div
+                whileHover={{ y: -5 }}
+                key={idx}
+                className="bg-slate-50 p-6 rounded-3xl border border-gray-100 flex flex-col gap-2 hover:bg-white hover:shadow-xl transition-all"
+              >
+                <div className="text-green-600 text-xl">{item.icon}</div>
+                <div>
+                  <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">{item.label}</p>
+                  <p className="text-gray-800 font-bold">{item.val}</p>
                 </div>
-                <div className="bg-white p-5 rounded-3xl border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center gap-2">
-                    <div className="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center text-green-500 text-xl mb-1">
-                        <FaTruck />
-                    </div>
-                    <h4 className="font-bold text-gray-800 text-sm">Fast Delivery</h4>
-                </div>
-                <div className="bg-white p-5 rounded-3xl border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center gap-2">
-                    <div className="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center text-green-500 text-xl mb-1">
-                        <FaUndo />
-                    </div>
-                    <h4 className="font-bold text-gray-800 text-sm">30-Day Returns</h4>
-                </div>
-            </motion.div>
+              </motion.div>
+            ))}
+          </div>
 
-            {/* Consultation Booking Card */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="mt-10 p-8 md:p-10 bg-linear-to-br from-green-500 to-emerald-600 rounded-4xl shadow-2xl text-white relative overflow-hidden"
-            >
-              {/* Decorative elements */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
-              
-              <div className="relative z-10">
-                <h2 className="text-3xl font-extrabold mb-2">Need Expert Advice?</h2>
-                <p className="text-green-50 mb-8 max-w-md">Book a free 15-minute diagnostic call with our botanical specialists to learn how to care for your {pla.plantName}.</p>
-                
-                <form
-                  onSubmit={handleBookConsultation}
-                  className="flex flex-col gap-4"
-                >
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Your Full Name"
-                    required
-                    className="input w-full bg-white/10 border-white/20 text-white placeholder:text-green-100 focus:bg-white/20 focus:border-white transition-all rounded-xl py-6"
-                  />
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Your Email Address"
-                    required
-                    className="input w-full bg-white/10 border-white/20 text-white placeholder:text-green-100 focus:bg-white/20 focus:border-white transition-all rounded-xl py-6"
-                  />
-
-                  <button
-                    type="submit"
-                    className="btn bg-white hover:bg-gray-50 text-green-600 border-none font-bold mt-2 shadow-xl rounded-xl py-4 h-auto text-lg transition-transform hover:-translate-y-1"
-                  >
-                    Book Consultation Now
-                  </button>
-                </form>
-              </div>
-            </motion.div>
+          {/* CTA Section */}
+          <div className="pt-6">
+            <button className="w-full py-6 bg-green-950 text-white text-xl font-black rounded-[2rem] hover:bg-green-900 transition-all shadow-2xl hover:shadow-green-900/40 flex items-center justify-center gap-4 group">
+              Add To Collection
+              <motion.span animate={{ x: [0, 5, 0] }} transition={{ repeat: Infinity, duration: 2 }}>
+                →
+              </motion.span>
+            </button>
           </div>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 };

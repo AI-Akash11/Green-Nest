@@ -32,6 +32,12 @@ export const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <MyProfile></MyProfile>
                 </PrivateRoute>
+            },
+            {
+                path: '/plantDetails/:id',
+                element: <PrivateRoute>
+                    <PlantDetails></PlantDetails>
+                </PrivateRoute>
             }
         ]
 
@@ -53,12 +59,5 @@ export const router = createBrowserRouter([
                 element: <ForgetPass></ForgetPass>
             }
         ]
-    },
-    {
-        path:'/plantDetails/:id',
-        hydrateFallbackElement: <Loader></Loader>,
-        element: <PrivateRoute>
-            <PlantDetails></PlantDetails>
-        </PrivateRoute>
     }
 ]);
