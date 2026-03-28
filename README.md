@@ -31,11 +31,9 @@ Green Nest is a high-end, single-page botanical application designed for plant e
 
 ## 📸 Moments to Observe
 
-*(Placeholders for your stunning screenshots)*
-
-| Desktop View | Mobile Experience |
-| :---: | :---: |
-| ![Desktop Banner](https://i.ibb.co.com/dyt4mZT/plant-logo.png) | ![Mobile Auth](https://i.ibb.co.com/dyt4mZT/plant-logo.png) |
+| Home Page | Plants Collection | Secure Auth |
+| :---: | :---: | :---: |
+| ![Home Page](https://i.ibb.co.com/zWX7cpNK/Home-Page.png) | ![Plants Page](https://i.ibb.co.com/9m3DsT55/Plants-Page.png) | ![Login Page](https://i.ibb.co.com/qVhBvM0/Login-Page.png) |
 
 ---
 
